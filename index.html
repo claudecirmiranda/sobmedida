@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sob Medida · SOAONE, Desenvolvimento sob medida, do backend à experiência do usuário</title>
+<meta name="description" content="Desenvolvo soluções sob medida, do backend à experiência do usuário final. Briefing estruturado, aderência aos requisitos, fidelidade de marca.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #15181C;
+    --surface: #1E2228;
+    --surface-alt: #23272E;
+    --line: #32373E;
+    --text: #EDEAE4;
+    --text-muted: #9A9488;
+    --brass: #C9A15C;
+    --brass-dim: #8A6F3F;
+    --thread: #B23A2E;
+
+    --display: 'Fraunces', serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+
+    --container: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  ::selection { background: var(--brass); color: var(--bg); }
+
+  /* ---------- Header ---------- */
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(21, 24, 28, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  .wordmark {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .wordmark b { color: var(--text); font-weight: 500; }
+  .wordmark span { color: var(--brass); }
+
+  nav { display: flex; gap: 32px; }
+  nav a {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible { color: var(--brass); }
+
+  @media (max-width: 640px) {
+    nav { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 120px 0 100px;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--brass);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 22px;
+    height: 1px;
+    background: var(--brass);
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 920px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--brass);
+  }
+
+  /* Fita métrica - elemento assinatura */
+  .tape {
+    margin: 46px 0 40px;
+    position: relative;
+    height: 46px;
+    max-width: 640px;
+  }
+  .tape svg { width: 100%; height: 100%; display: block; }
+  .tape-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 6px;
+  }
+
+  .hero p.lede {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 44px;
+  }
+
+  .cta-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 28px;
+    border-radius: 3px;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--brass);
+    color: #1A1204;
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201, 161, 92, 0.25); }
+  .btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover { border-color: var(--brass); color: var(--brass); }
+
+  /* ---------- Section shared ---------- */
+
+  section { padding: 100px 0; border-top: 1px solid var(--line); }
+
+  .section-head { max-width: 620px; margin-bottom: 56px; }
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--brass);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .section-head h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.2;
+  }
+
+  /* ---------- Missão / Visão ---------- */
+
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 720px) { .mv-grid { grid-template-columns: 1fr; } }
+
+  .mv-card {
+    background: var(--surface);
+    padding: 44px 40px;
+  }
+  .mv-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--brass);
+    border: 1px solid var(--brass-dim);
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 22px;
+  }
+  .mv-card p {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  /* ---------- Pilares (Como trabalho) ---------- */
+
+  .pilares {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 860px) { .pilares { grid-template-columns: 1fr; } }
+
+  .pilar {
+    background: var(--bg);
+    padding: 38px 34px;
+  }
+  .pilar-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .pilar h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 21px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .pilar p {
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Prova / case ---------- */
+
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 780px) { .case-card { grid-template-columns: 1fr; padding: 32px; } }
+
+  .case-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--brass);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .case-card h3 {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .case-card > div:first-child p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
+  .case-link {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--brass);
+    text-decoration: none;
+    border-bottom: 1px solid var(--brass-dim);
+    padding-bottom: 2px;
+  }
+  .case-link:hover { border-color: var(--brass); }
+
+  .case-stats { display: flex; flex-direction: column; gap: 22px; }
+  .stat { border-left: 2px solid var(--brass); padding-left: 18px; }
+  .stat b {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 500;
+    display: block;
+    color: var(--text);
+  }
+  .stat span { font-size: 13px; color: var(--text-muted); }
+
+  /* ---------- CTA final ---------- */
+
+  .cta-final { text-align: center; }
+  .cta-final .section-head { margin: 0 auto 40px; text-align: center; }
+  .cta-final .section-tag { justify-content: center; }
+  .cta-final p.lede {
+    max-width: 520px;
+    margin: 0 auto 40px;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+  .cta-final .cta-row { justify-content: center; }
+
+  .contact-row {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .contact-row a { color: var(--text-muted); text-decoration: none; }
+  .contact-row a:hover { color: var(--brass); }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .footer-inner a { color: var(--text-muted); text-decoration: none; }
+  .footer-inner a:hover { color: var(--brass); }
+
+  /* ---------- Reveal ---------- */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="#" class="wordmark"><b>SOAONE</b><span>/ sob medida</span></a>
+    <nav>
+      <a href="#metodo">Método</a>
+      <a href="#prova">Case</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Desenvolvimento sob medida</p>
+    <h1>Software pensado <em>na medida certa</em><br>do seu negócio, não no tamanho padrão de um template.</h1>
+
+    <div class="tape" aria-hidden="true">
+      <svg viewBox="0 0 640 46" preserveAspectRatio="none">
+        <line x1="0" y1="23" x2="640" y2="23" stroke="#32373E" stroke-width="1"/>
+        <g stroke="#C9A15C" stroke-width="1.5">
+          <!-- marcas maiores a cada 64px, menores entre elas -->
+          <line x1="0" y1="10" x2="0" y2="36"/>
+          <line x1="64" y1="10" x2="64" y2="36"/>
+          <line x1="128" y1="10" x2="128" y2="36"/>
+          <line x1="192" y1="10" x2="192" y2="36"/>
+          <line x1="256" y1="10" x2="256" y2="36"/>
+          <line x1="320" y1="10" x2="320" y2="36"/>
+          <line x1="384" y1="10" x2="384" y2="36"/>
+          <line x1="448" y1="10" x2="448" y2="36"/>
+          <line x1="512" y1="10" x2="512" y2="36"/>
+          <line x1="576" y1="10" x2="576" y2="36"/>
+          <line x1="640" y1="10" x2="640" y2="36"/>
+        </g>
+        <g stroke="#565C64" stroke-width="1">
+          <line x1="16" y1="16" x2="16" y2="30"/><line x1="32" y1="16" x2="32" y2="30"/><line x1="48" y1="16" x2="48" y2="30"/>
+          <line x1="80" y1="16" x2="80" y2="30"/><line x1="96" y1="16" x2="96" y2="30"/><line x1="112" y1="16" x2="112" y2="30"/>
+          <line x1="144" y1="16" x2="144" y2="30"/><line x1="160" y1="16" x2="160" y2="30"/><line x1="176" y1="16" x2="176" y2="30"/>
+          <line x1="208" y1="16" x2="208" y2="30"/><line x1="224" y1="16" x2="224" y2="30"/><line x1="240" y1="16" x2="240" y2="30"/>
+          <line x1="272" y1="16" x2="272" y2="30"/><line x1="288" y1="16" x2="288" y2="30"/><line x1="304" y1="16" x2="304" y2="30"/>
+          <line x1="336" y1="16" x2="336" y2="30"/><line x1="352" y1="16" x2="352" y2="30"/><line x1="368" y1="16" x2="368" y2="30"/>
+          <line x1="400" y1="16" x2="400" y2="30"/><line x1="416" y1="16" x2="416" y2="30"/><line x1="432" y1="16" x2="432" y2="30"/>
+          <line x1="464" y1="16" x2="464" y2="30"/><line x1="480" y1="16" x2="480" y2="30"/><line x1="496" y1="16" x2="496" y2="30"/>
+          <line x1="528" y1="16" x2="528" y2="30"/><line x1="544" y1="16" x2="544" y2="30"/><line x1="560" y1="16" x2="560" y2="30"/>
+          <line x1="592" y1="16" x2="592" y2="30"/><line x1="608" y1="16" x2="608" y2="30"/><line x1="624" y1="16" x2="624" y2="30"/>
+        </g>
+        <circle cx="0" cy="23" r="4" fill="#B23A2E"/>
+        <circle cx="384" cy="23" r="4" fill="#B23A2E"/>
+      </svg>
+      <p class="tape-label">DA IDEIA (0) AO PRODUTO EM PRODUÇÃO (100), SEM ATALHOS NA MEDIÇÃO</p>
+    </div>
+
+    <p class="lede">Desenvolvo soluções sob medida, do backend à experiência do usuário final. Cada projeto começa com uma medição cuidadosa do problema real, não com um corte genérico de tecido.</p>
+
+    <div class="cta-row">
+      <a href="#contato" class="btn btn-primary">Vamos conversar sobre seu projeto</a>
+      <a href="#prova" class="btn btn-ghost">Ver um case recente</a>
+    </div>
+  </div>
+</section>
+
+<section id="proposito">
+  <div class="wrap">
+    <div class="mv-grid reveal">
+      <div class="mv-card">
+        <span class="mv-tag">MISSÃO</span>
+        <p>Desenvolver soluções digitais sob medida, do backend à experiência do usuário final, com o rigor de quem mede duas vezes antes de cortar uma vez.</p>
+      </div>
+      <div class="mv-card">
+        <span class="mv-tag">VISÃO</span>
+        <p>Ser o parceiro técnico que marcas procuram quando querem algo pensado para o seu contexto, não um template genérico adaptado às pressas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="metodo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-tag">Como eu trabalho</p>
+      <h2>Três medidas que não abro mão em nenhum projeto</h2>
+    </div>
+
+    <div class="pilares reveal">
+      <div class="pilar">
+        <p class="pilar-num">01</p>
+        <h3>Briefing estruturado</h3>
+        <p>Todo projeto começa com um briefing real, não com uma tela em branco. Entendo o negócio, o público e as restrições antes de escrever a primeira linha de código.</p>
+      </div>
+      <div class="pilar">
+        <p class="pilar-num">02</p>
+        <h3>Aderência aos requisitos</h3>
+        <p>O que foi combinado é o que é entregue. Cada decisão técnica, da arquitetura ao deploy, é rastreável até uma necessidade real do projeto, não uma preferência pessoal.</p>
+      </div>
+      <div class="pilar">
+        <p class="pilar-num">03</p>
+        <h3>Fidelidade à marca</h3>
+        <p>Cor, tipografia, tom de voz: a identidade visual do cliente é seguida à risca, não reinterpretada. Um guia de marca é instrução, não sugestão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prova">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-tag">Prova, não promessa</p>
+      <h2>Um case recente aplicando esse método</h2>
+    </div>
+
+    <div class="case-card reveal">
+      <div>
+        <p class="case-eyebrow">O Biscoito de Polvilho®</p>
+        <h3>Localizador de lojas + mapa interativo, do briefing à produção</h3>
+        <p>Projeto conduzido a partir do guia de marca e do briefing institucional do cliente, com fidelidade total à identidade visual, da paleta de cores ao tom de voz, e arquitetura pensada para manter custo de operação próximo de zero.</p>
+        <a href="https://www.obiscoito.com.br/orcamento.html" class="case-link" target="_blank" rel="noopener">Ver funcionando em obiscoito.com.br →</a>
+      </div>
+      <div class="case-stats">
+        <div class="stat"><b>34</b><span>lojas mapeadas e buscáveis por CEP</span></div>
+        <div class="stat"><b>100%</b><span>fiel ao guia de marca do cliente</span></div>
+        <div class="stat"><b>0</b><span>alterações de escopo fora do combinado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="cta-final">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="section-tag">Vamos conversar</p>
+      <h2>Tem um projeto que precisa de uma medida certa?</h2>
+    </div>
+    <p class="lede reveal">Me conta o contexto, mesmo que ainda não tenha um briefing formal. É daí que a gente começa a medir.</p>
+
+    <div class="cta-row reveal">
+      <a href="https://wa.me/553199673-8203?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20um%20projeto%20sob%20medida." class="btn btn-primary" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <a href="mailto:contato@soaone.com.br" class="btn btn-ghost">contato@soaone.com.br</a>
+    </div>
+
+    <div class="contact-row reveal">
+      <span>+55 31 99673-8203</span>
+      <span>Belo Horizonte, BR</span>
+      <a href="https://soaone.com.br" target="_blank" rel="noopener">soaone.com.br →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 SOAONE, Claudecir Miranda</span>
+    <a href="https://soaone.com.br">soaone.com.br</a>
+  </div>
+</footer>
+
+<script>
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el) { io.observe(el); });
+  } else {
+    els.forEach(function(el) { el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
